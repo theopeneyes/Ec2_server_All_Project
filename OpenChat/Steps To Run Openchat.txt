@@ -1,0 +1,79 @@
+Last login: Wed Dec 27 06:18:33 2023 from 144.48.250.122
+   ,     #_
+   ~\_  ####_        Amazon Linux 2
+  ~~  \_#####\
+  ~~     \###|       AL2 End of Life is 2025-06-30.
+  ~~       \#/ ___
+   ~~       V~' '->
+    ~~~         /    A newer version of Amazon Linux is available!
+      ~~._.   _/
+         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
+       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
+
+35 package(s) needed for security, out of 47 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-18-124 ~]$ cd AIG_Llama2/
+[ec2-user@ip-172-31-18-124 AIG_Llama2]$ source environment/bin/activate
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ sudo systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2023-12-27 06:52:22 UTC; 33s ago
+  Process: 3829 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+  Process: 3783 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+  Process: 3767 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+ Main PID: 3846 (nginx)
+    Tasks: 17
+   Memory: 18.5M
+   CGroup: /system.slice/nginx.service
+           ├─3846 nginx: master process /usr/sbin/nginx
+           ├─3847 nginx: worker process
+           ├─3848 nginx: worker process
+           ├─3849 nginx: worker process
+           ├─3850 nginx: worker process
+           ├─3851 nginx: worker process
+           ├─3852 nginx: worker process
+           ├─3853 nginx: worker process
+           ├─3854 nginx: worker process
+           ├─3855 nginx: worker process
+           ├─3856 nginx: worker process
+           ├─3857 nginx: worker process
+           ├─3859 nginx: worker process
+           ├─3860 nginx: worker process
+           ├─3861 nginx: worker process
+           ├─3862 nginx: worker process
+           └─3863 nginx: worker process
+
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal systemd[1]: Starting The nginx HTTP and reverse proxy server...
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal nginx[3783]: nginx: [warn] conflicting server name "aigapi.thisistheprogress.com" on 0.0.0.0:8...gnored
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal nginx[3783]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal nginx[3783]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal nginx[3829]: nginx: [warn] conflicting server name "aigapi.thisistheprogress.com" on 0.0.0.0:8...gnored
+Dec 27 06:52:22 ip-172-31-18-124.ec2.internal systemd[1]: Started The nginx HTTP and reverse proxy server.
+Hint: Some lines were ellipsized, use -l to show in full.
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ uvicorn main:app --reload --port 8000
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG_Llama2']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4461] using StatReload
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [01:47<00:00, 53.73s/it]
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:381: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.5` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+INFO:     Started server process [4463]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Source file type :  pdf
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 2, 'is_none_of_above': 'no'}]
+status updated :  {'id': '658bcafedea2192fb208c1f2', 'status': 'Processing'}
+2023-12-27 06:59:05,640 [AnyIO worker] [INFO ]  Retrieving https://drive.google.com/u/0/uc?id=18nJdMmNNmlEyAd2orurj-1UNS9XTYNSN&export=download to /tmp/u-0-uc.
+2023-12-27 06:59:06,927 [AnyIO worker] [WARNI]  Failed to see startup log message; retrying...
+/home/ec2-user/AIG_Llama2/text.py:58: GuessedAtParserWarning: No parser was explicitly specified, so I'm using the best available HTML parser for this system ("html.parser"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+
+The code that caused this warning is on line 58 of the file /home/ec2-user/AIG_Llama2/text.py. To get rid of this warning, pass the additional argument 'features="html.parser"' to the BeautifulSoup constructor.
+
+  xhtml_data = BeautifulSoup(data['content'])
+NPages: 1
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/utils.py:1473: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use and modify the model generation configuration (see https://huggingface.co/docs/transformers/generation_strategies#default-text-generation-configuration )
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:32000 for open-end generation.
+INFO:     35.203.211.28:0 - "GET / HTTP/1.0" 404 Not Found
+Setting `pad_token_id` to `eos_token_id`:32000 for open-end generation.

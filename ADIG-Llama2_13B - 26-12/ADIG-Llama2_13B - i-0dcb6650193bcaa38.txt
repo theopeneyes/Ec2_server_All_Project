@@ -1,0 +1,12 @@
+Instance Name : ADIG-Llama2_13B
+Instance ID : i-0dcb6650193bcaa38
+Instance Type : g4dn.xlarge
+Instance IP : 18.207.41.252
+
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ python -V
+Python 3.10.2
+
+
+AMI ID : ami-0f78f4ce57d57f121
+AMI Name : Llama2_13B_Optimized - 27-12-23
+Name : Llama2_13_Model_Optimized

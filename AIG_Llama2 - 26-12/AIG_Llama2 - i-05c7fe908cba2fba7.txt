@@ -1,0 +1,9 @@
+Instance Name : AIG_Llama2
+Instance ID : i-05c7fe908cba2fba7
+Instance Type : g4dn.xlarge
+Elastic IP : 18.207.41.252
+
+
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ python -V
+Python 3.10.2
+

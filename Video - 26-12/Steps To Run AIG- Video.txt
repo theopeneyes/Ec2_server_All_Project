@@ -1,0 +1,6 @@
+[ec2-user@ip-172-31-52-109 ~]$ cd AIG-Llama2_Video/
+[ec2-user@ip-172-31-52-109 AIG-Llama2_Video]$ source environment/bin/activate
+(environment) [ec2-user@ip-172-31-52-109 AIG-Llama2_Video]$ uvicorn main:app --reload --port 8080
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG-Llama2_Video']
+ERROR:    [Errno 98] Address already in use
+(environment) [ec2-user@ip-172-31-52-109 AIG-Llama2_Video]$

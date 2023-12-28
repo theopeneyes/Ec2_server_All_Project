@@ -1,0 +1,19 @@
+Date-Time,User Input Text,Generated SQL Query,Answer,Total Tokens Used,Prompt Tokens,Completion Tokens,Total Cost (USD)
+2023-12-25 10:31:02.144186,Give me number of counts by perpetrators in Afghanistan for year 2022 ,"SELECT killed_perp, COUNT(*) as count FROM tblincidents WHERE country = 'Afghanistan' AND year = 2022 GROUP BY killed_perp","The number of counts by perpetrators in Afghanistan for the year 2022 are as follows:
+- Perpetrator 0: 165 counts
+- Perpetrator 1: 13 counts
+- Perpetrator 2: 1 count
+- Perpetrator 3: 2 counts
+- Perpetrator 4: 3 counts
+- Perpetrator 5: 2 counts
+- Perpetrator 8: 1 count
+- Perpetrator 9: 1 count",3658,3460,198,0.0038560000000000005
+2023-12-26 11:12:29.318657,Give me number of counts by perpetrators in Afghanistan for year 2022 ,"SELECT killed_perp, COUNT(*) as count FROM tblincidents WHERE country = 'Afghanistan' AND year = 2022 GROUP BY killed_perp","The number of counts by perpetrators in Afghanistan for the year 2022 are as follows:
+- Perpetrator 0: 165 counts
+- Perpetrator 1: 13 counts
+- Perpetrator 2: 1 count
+- Perpetrator 3: 2 counts
+- Perpetrator 4: 3 counts
+- Perpetrator 5: 2 counts
+- Perpetrator 8: 1 count
+- Perpetrator 9: 1 count",3658,3460,198,0.0038560000000000005

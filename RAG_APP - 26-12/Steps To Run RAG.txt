@@ -1,0 +1,91 @@
+Last login: Mon Dec 25 10:30:04 2023 from 144.48.250.122
+   ,     #_
+   ~\_  ####_        Amazon Linux 2
+  ~~  \_#####\
+  ~~     \###|       AL2 End of Life is 2025-06-30.
+  ~~       \#/ ___
+   ~~       V~' '->
+    ~~~         /    A newer version of Amazon Linux is available!
+      ~~._.   _/
+         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
+       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
+
+[ec2-user@ip-172-31-46-212 ~]$ cd rag_app/
+[ec2-user@ip-172-31-46-212 rag_app]$ source environment/bin/activate
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$ sudo systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$ sudo systemctl start nginx
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$ streamlit run main.py
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to False.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Network URL: http://172.31.46.212:8501
+  External URL: http://35.153.186.181:8501
+
+
+
+> Entering new AgentExecutor chain...
+
+Invoking: `sql_db_list_tables` with ``
+
+
+tblincidents
+Invoking: `sql_db_schema` with `tblincidents`
+
+
+
+CREATE TABLE tblincidents (
+        id INTEGER(11) NOT NULL AUTO_INCREMENT,
+        web_country TEXT,
+        country TEXT,
+        country_id TEXT,
+        region TEXT,
+        region_id TEXT,
+        incident_date DATE,
+        day INTEGER(2),
+        month INTEGER(2),
+        year YEAR(4),
+        killed TEXT,
+        killed_perp TEXT,
+        killed_us TEXT,
+        wounded TEXT,
+        wounded_us TEXT,
+        hostages TEXT,
+        hostages_us TEXT,
+        download_facilities TEXT,
+        download_perps TEXT,
+        download_tactics TEXT,
+        download_weapons TEXT,
+        incident_id TEXT,
+        incident_seq TEXT,
+        PRIMARY KEY (id)
+)DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB
+
+/*
+3 rows from tblincidents table:
+id      web_country     country country_id      region  region_id       incident_date   day     month   year    killed  killed_perp     killed_us   wounded  wounded_us      hostages        hostages_us     download_facilities     download_perps  download_tactics        download_weapons        incident_id  incident_seq
+1       SAUDI ARABIA    SAUDI ARABIA    SA      Western Asia    145     2018-07-08      8       7       2018    4       0       0       1       0   LAW ENFORCEMENT & INTELLIGENCE   UNKNOWN UNKNOWN ARMED ASSAULT   UNCLEAR/UNKNOWN WEAPON  1804049 00
+2       EGYPT   EGYPT   EG      Northern Africa 15      2018-07-11      11      7       2018    11      0       0       0       0       0       0   PRIVATE PROPERTY, RESIDENCES     ISIS-Sinai Province (ISIS-SP)   SHOOTING|UNKNOWN ARMED ASSAULT  UNCLEAR/UNKNOWN FIREARM 1804117 00
+3       EGYPT   EGYPT   EG      Northern Africa 15      2018-11-04      4       11      2018    19      0       0       0       0       0       0   UNKNOWN OR UNCLEAR       ISIS-Sinai Province (ISIS-SP)   SHOOTING|UNKNOWN ARMED ASSAULT  UNCLEAR/UNKNOWN FIREARM 1806417 00
+*/
+Invoking: `sql_db_query` with `SELECT killed_perp, COUNT(*) as count FROM tblincidents WHERE country = 'Afghanistan' AND year = 2022 GROUP BY killed_perp`
+
+
+[('0', 165), ('1', 13), ('2', 1), ('3', 2), ('4', 3), ('5', 2), ('8', 1), ('9', 1)]The number of counts by perpetrators in Afghanistan for the year 2022 are as follows:
+- Perpetrator 0: 165 counts
+- Perpetrator 1: 13 counts
+- Perpetrator 2: 1 count
+- Perpetrator 3: 2 counts
+- Perpetrator 4: 3 counts
+- Perpetrator 5: 2 counts
+- Perpetrator 8: 1 count
+- Perpetrator 9: 1 count
+
+> Finished chain.
+^C  Stopping...
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$

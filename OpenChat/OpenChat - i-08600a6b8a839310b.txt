@@ -1,0 +1,12 @@
+Instance Name : OpenChat
+Instance ID : i-08600a6b8a839310b
+Instance Type : g4dn.4xlarge
+Public IP : 18.207.41.252
+
+
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ python -V
+Python 3.10.2
+
+AMI ID : ami-088e2ec338010a119
+AMI Name : OpenChat Model - 27-12-23
+Name : OpenChat_Model

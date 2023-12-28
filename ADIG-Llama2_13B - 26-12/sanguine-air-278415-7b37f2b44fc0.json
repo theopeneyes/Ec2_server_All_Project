@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sanguine-air-278415",
+  "private_key_id": "7b37f2b44fc021fd3d17504788171426445cc254",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCGhZFMqHZdesdT\n+aT0MDc6V+2z1g9QYCZcjKpi+J7a+EgKo51R9uXgakU92RqUORuwpTzQon8vcwzq\naHB8Z8AWU04vi7YVU5kD9nct8z43MyMZC4xwnE09+vJlqtwPRkkb6/RgXv6FEsTt\n3ivB100hSLeM1see/U7tw7O9/73MxJvNCE0sPfJLdgqhWeuId36wlKSeqBGfDUqP\nbF23x0s+o3t6ckMiNQAk6j4f1T9f5owM2kiKFvLKgaeSREpqRtmKchKs2exaImWu\n4CenoZjz45L9Kn6S2fn5VsfRRE6RHJ1BEoRkW/xXxaISzx4aG6eVGZVtKm+JQuYj\nh6602CO9AgMBAAECggEACfCToGjwOg8I7HUNUbfAVPDLURb3kbZRD1SbgG2je0WO\nOS8GwFgweykPDbddhedEWwSSnk3rfOuQ4D8wVJjr8hpctBmsLh47t7W976jCB50h\nMkgOrAF4maRRxd5enUhRvZztNTO/tcCByZu5evy4J8XyPhder6pC60GjJd5gPWGM\nPqUkoGVWySOoPfNA4Vk5hbHkDwY3bw/YzdrRfdV4sgGMXSRfvX4raEPN0WDbI+8W\nCa1JEtCCPg0mMhRtoGyLNjD10ko/a8RkEZN4nUQUtNSpE0jJ8yxAzR0nuTqgS/b9\nHrPGuBbUdrZgpD+c3O0FustPlRWp6ZtSl91Y2kr7sQKBgQC7VUO6/Pcy34qY0UHy\nk68vziZOmZvQ8oeA3hhpq5GQmeUJS6SWDCMaHnvDmRo7pisUBERffLt+GokQn2Nz\nMxu6KtnSRJgqX+QnWpj0Wlrqf76Y2NhUxhpOr5zjoplnEkldhIOgBhVJWGHoKlKr\nYAvmLwMMbIeFb0onsAQqrtL3JQKBgQC31Kh1c0oRk0fphUNbfdtEZR5WZO5Ogohi\npcv9866u6JwrdynTlEOY3yr94wYpWaoGW/1oRGK4xk/2fZcVLm/Jj4jQc6wPAFvo\n2QwPf+JfAHt4OnqKOmFpZgLoJz97EF/keySVjaQOc8fjHCYB784dcmdLGlDeI71C\njTWbdjxCuQKBgH5v4QPuwsWCXSAhdHpONVp1sCMyyBjx6IUQ4bdIhjnrtMteU5q2\nXGa/llcBGdSSpdafvqoYHM/TBxnCCjRxlVBEpbmmdHF9QRdSrZOW/G/zgmfVS8WD\n47OiEakOUK1hiUTmMJSsJmfXkFVLY3qpm75jkpIrGhj0cT9yLI3GaztFAoGAcfMw\nOR2t3BcfjHE+v4fUUyEbHRKTZbckM4HyYQicT2+A3rCPDMfq3uf3DkmbmCYsbqS2\n/9rkFwVWq8RN0qNmR9rhQ9Vv4hym3D8uaq0q9RincG9PZj+qAltpkd5CS1ZrGoX6\nt3mFKDA8x1q7dJfhe/9eZ/94ATrGJmrBwAwaboECgYBFSun7yS+Ij9eVAA0Y4hy3\nLMWRNMei4ISCEVStSMNF8lGBUDWk9xHZpQLjstdaFcb4u5BhrMKUX7V+eRNv+tm8\nK8mKmIi+DXu4jKB+eYjVyzMJxZGfMmCvfYXcdw9MFUVXEgXgZ1RBqtbbECdw502Y\nnmSkYezuR7FkfrYQP7/K/A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account-for-auth-adig@sanguine-air-278415.iam.gserviceaccount.com",
+  "client_id": "110744098526318659221",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-for-auth-adig%40sanguine-air-278415.iam.gserviceaccount.com"
+}

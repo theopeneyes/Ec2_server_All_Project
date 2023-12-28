@@ -1,0 +1,231 @@
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG_Llama2']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [6666] using StatReload
+skip module injection for FusedLlamaMLPForQuantizedModel not support integrate without triton yet.
+INFO:     Started server process [6668]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Source file type :  txt
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 1, 'is_none_of_above': 'no'}]
+status updated :  {'id': '6537b58571c37fd5b906edb3', 'status': 'Processing'}
+INFO:     199.250.200.224:0 - "GET /getQuestions/6537b58571c37fd5b906edb3 HTTP/1.0" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 192, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/home/ec2-user/AIG_Llama2/main.py", line 18, in AIG
+    file_type, final,text_content, type_of_question, _id= getText(user_id)
+  File "/home/ec2-user/AIG_Llama2/text.py", line 102, in getText
+    convert_text_to_pdf(file_path,pdf_file)
+  File "/home/ec2-user/AIG_Llama2/text.py", line 24, in convert_text_to_pdf
+    result = subprocess.run(['unoconv', '-f', 'pdf', '-o', pdf_path, text_path], capture_output=True)
+  File "/usr/local/lib/python3.10/subprocess.py", line 501, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/local/lib/python3.10/subprocess.py", line 966, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.10/subprocess.py", line 1842, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'unoconv'
+2023-10-24 14:09:04,335 [AnyIO worker] [INFO ]  Retrieving https://drive.google.com/u/0/uc?id=1BhM9dtsv0NT1n-Zn9mHp2nHP9bWzLKpK&export=download to /tmp/u-0-uc.
+2023-10-24 14:09:05,463 [AnyIO worker] [WARNI]  Failed to see startup log message; retrying...
+/home/ec2-user/AIG_Llama2/text.py:78: GuessedAtParserWarning: No parser was explicitly specified, so I'm using the best available HTML parser for this system ("html.parser"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+
+The code that caused this warning is on line 78 of the file /home/ec2-user/AIG_Llama2/text.py. To get rid of this warning, pass the additional argument 'features="html.parser"' to the BeautifulSoup constructor.
+
+  xhtml_data = BeautifulSoup(data['content'])
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:362: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:367: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Source file type :  pdf
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 1, 'is_none_of_above': 'no'}]
+status updated :  {'id': '6537cf93148a585ee806f5f2', 'status': 'Processing'}
+INFO:     199.250.200.224:0 - "GET /getQuestions/6537cf93148a585ee806f5f2 HTTP/1.0" 200 OK
+2023-10-24 14:21:04,499 [AnyIO worker] [INFO ]  Retrieving https://drive.google.com/u/0/uc?id=15h6Bz92zTyRH6Srsq4JqyvY5iLyCoakv&export=download to /tmp/u-0-uc.
+2023-10-24 14:22:06,093 [AnyIO worker] [INFO ]  Retrieving https://drive.google.com/u/0/uc?id=1raUY63gixGT3j_kahbXszra2-eFhaS80&export=download to /tmp/u-0-uc.
+Source file type :  pdf
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 1, 'is_none_of_above': 'no'}, {'question_type': 'mcq_fib', 'no_of_que': 1, 'is_none_of_above': 'no'}]
+status updated :  {'id': '6537d2bbb93cecfe000d31a2', 'status': 'Processing'}
+Source file type :  pdf
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 1, 'is_none_of_above': 'no'}, {'question_type': 'mcq_fib', 'no_of_que': 1, 'is_none_of_above': 'no'}, {'question_type': 'bool_statement', 'no_of_que': 1}]
+status updated :  {'id': '6537d2ce1238be359202dd12', 'status': 'Processing'}
+INFO:     199.250.200.224:0 - "GET /getQuestions/6537d2ce1238be359202dd12 HTTP/1.0" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 192, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/home/ec2-user/AIG_Llama2/main.py", line 49, in AIG
+    recommended_questions,additional_questions = getAllGeneratedQuestions(final, type_of_question)
+  File "/home/ec2-user/AIG_Llama2/question_generation.py", line 25, in getAllGeneratedQuestions
+    mcq_questions=mcq(Text)
+  File "/home/ec2-user/AIG_Llama2/mcq_generation.py", line 16, in mcq
+    output = model_is.model.generate(inputs=input_ids, temperature=0.1, top_p=0.9, max_new_tokens=768)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/auto_gptq/modeling/_base.py", line 443, in generate
+    return self.model.generate(**kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/utils.py", line 1596, in generate
+    return self.greedy_search(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/utils.py", line 2444, in greedy_search
+    outputs = self(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 809, in forward
+    outputs = self.model(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 697, in forward
+    layer_outputs = decoder_layer(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 413, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/auto_gptq/nn_modules/fused_llama_attn.py", line 71, in forward
+    value_states = torch.cat([past_key_value[1], value_states], dim=2)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.58 GiB total capacity; 12.32 GiB already allocated; 3.56 MiB free; 14.44 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+INFO:     199.250.200.224:0 - "GET /getQuestions/6537d2bbb93cecfe000d31a2 HTTP/1.0" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/fastapi/routing.py", line 192, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/home/ec2-user/AIG_Llama2/main.py", line 49, in AIG
+    recommended_questions,additional_questions = getAllGeneratedQuestions(final, type_of_question)
+  File "/home/ec2-user/AIG_Llama2/question_generation.py", line 25, in getAllGeneratedQuestions
+    mcq_questions=mcq(Text)
+  File "/home/ec2-user/AIG_Llama2/mcq_generation.py", line 28, in mcq
+    output = model_is.model.generate(inputs=input_ids, temperature=0.1, top_p=0.9, max_new_tokens=768)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/auto_gptq/modeling/_base.py", line 443, in generate
+    return self.model.generate(**kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/utils.py", line 1596, in generate
+    return self.greedy_search(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/utils.py", line 2444, in greedy_search
+    outputs = self(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 809, in forward
+    outputs = self.model(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 697, in forward
+    layer_outputs = decoder_layer(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 413, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/auto_gptq/nn_modules/fused_llama_attn.py", line 83, in forward
+    attn_output = F.scaled_dot_product_attention(
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 22.00 MiB (GPU 0; 14.58 GiB total capacity; 12.31 GiB already allocated; 17.56 MiB free; 14.42 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

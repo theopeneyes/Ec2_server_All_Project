@@ -1,0 +1,20 @@
+Instance Name : AIG-Video
+Instance ID : i-05a1a76c1a011f90e
+Instance Type : g4dn.xlarge
+Elastic IP : 35.174.71.33
+
+
+(environment) [ec2-user@ip-172-31-52-109 AIG-Llama2_Video]$ python -V
+Python 3.9.16
+
+(environment) [ec2-user@ip-172-31-52-109 AIG-Llama2_Video]$ ffmpeg -version
+ffmpeg version 6.0 Copyright (c) 2000-2023 the FFmpeg developers
+built with gcc 11 (GCC)
+configuration:
+libavutil      58.  2.100 / 58.  2.100
+libavcodec     60.  3.100 / 60.  3.100
+libavformat    60.  3.100 / 60.  3.100
+libavdevice    60.  1.100 / 60.  1.100
+libavfilter     9.  3.100 /  9.  3.100
+libswscale      7.  1.100 /  7.  1.100
+libswresample   4. 10.100 /  4. 10.100

@@ -1,0 +1,42 @@
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG_Llama2']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [6964] using StatReload
+skip module injection for FusedLlamaMLPForQuantizedModel not support integrate without triton yet.
+INFO:     Started server process [6966]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2023-11-28 07:22:06,623 [AnyIO worker] [INFO ]  Retrieving https://drive.google.com/u/0/uc?id=1VfK8TYJhVcxyXD1Q07j8lD9frrGiMaJJ&export=download to /tmp/u-0-uc.
+2023-11-28 07:22:07,301 [AnyIO worker] [INFO ]  Retrieving http://search.maven.org/remotecontent?filepath=org/apache/tika/tika-server/1.24/tika-server-1.24.jar to /tmp/tika-server.jar.
+2023-11-28 07:22:07,484 [AnyIO worker] [INFO ]  Retrieving http://search.maven.org/remotecontent?filepath=org/apache/tika/tika-server/1.24/tika-server-1.24.jar.md5 to /tmp/tika-server.jar.md5.
+2023-11-28 07:22:07,727 [AnyIO worker] [WARNI]  Failed to see startup log message; retrying...
+/home/ec2-user/AIG_Llama2/text.py:58: GuessedAtParserWarning: No parser was explicitly specified, so I'm using the best available HTML parser for this system ("html.parser"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+
+The code that caused this warning is on line 58 of the file /home/ec2-user/AIG_Llama2/text.py. To get rid of this warning, pass the additional argument 'features="html.parser"' to the BeautifulSoup constructor.
+
+  xhtml_data = BeautifulSoup(data['content'])
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:362: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/ec2-user/AIG_Llama2/environment/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:367: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Source file type :  pdf
+Type of question :  [{'question_type': 'mcq', 'no_of_que': 1, 'is_none_of_above': 'no'}]
+status updated :  {'id': '656592712b003d2ebd026002', 'status': 'Processing'}
+NPages: 2
+INFO:     199.250.200.224:0 - "GET /getQuestions/656592712b003d2ebd026002 HTTP/1.0" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [6966]
+INFO:     Stopping reloader process [6964]
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG_Llama2']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4155] using StatReload
+skip module injection for FusedLlamaMLPForQuantizedModel not support integrate without triton yet.
+INFO:     Started server process [4157]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4157]
+INFO:     Stopping reloader process [4155]

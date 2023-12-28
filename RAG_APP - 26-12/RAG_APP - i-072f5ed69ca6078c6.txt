@@ -1,0 +1,16 @@
+Instance name : RAG_APP
+Instance ID : i-072f5ed69ca6078c6
+Instance Type : t3.small
+Elastic IP : 35.153.186.181
+
+
+
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$ python -V
+Python 3.11.4
+(environment) [ec2-user@ip-172-31-46-212 rag_app]$ streamlit version
+Streamlit, version 1.29.0
+
+
+AMI ID : ami-0ddcc3edcb9c3f681
+AMI Name : RAG_APP_Deployed - 27-12-23
+Name : RAG_APP

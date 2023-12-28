@@ -1,0 +1,24 @@
+Last login: Tue Dec 26 11:25:43 2023 from 144.48.250.122
+   ,     #_
+   ~\_  ####_        Amazon Linux 2
+  ~~  \_#####\
+  ~~     \###|       AL2 End of Life is 2025-06-30.
+  ~~       \#/ ___
+   ~~       V~' '->
+    ~~~         /    A newer version of Amazon Linux is available!
+      ~~._.   _/
+         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
+       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
+
+22 package(s) needed for security, out of 27 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-18-124 ~]$ cd AIG_Llama2/
+[ec2-user@ip-172-31-18-124 AIG_Llama2]$ source environment/bin/activate
+(environment) [ec2-user@ip-172-31-18-124 AIG_Llama2]$ uvicorn main:app --reload --port 8000
+INFO:     Will watch for changes in these directories: ['/home/ec2-user/AIG_Llama2']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4604] using StatReload
+skip module injection for FusedLlamaMLPForQuantizedModel not support integrate without triton yet.
+INFO:     Started server process [4606]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -1,0 +1,129 @@
+=============================================================================
+       __|  __|_  )
+       _|  (     /   Deep Learning AMI GPU PyTorch 2.0.1 (Amazon Linux 2)
+      ___|\___|___|
+=============================================================================
+
+* Please note that Amazon EC2 P2 Instance is not supported on current DLAMI.
+* Supported EC2 instances: P5, P4d, P4de, P3, P3dn, G5, G4dn, G3.
+* To activate pre-built pytorch environment, run: 'source activate pytorch'
+* To activate base conda environment upon login, run: 'conda config --set auto_activate_base true'
+* NVIDIA driver version: 535.54.03
+* CUDA version: 12.1
+
+AWS Deep Learning AMI Homepage: https://aws.amazon.com/machine-learning/amis/
+Release Notes: https://docs.aws.amazon.com/dlami/latest/devguide/appendix-ami-release-notes.html
+Support: https://forums.aws.amazon.com/forum.jspa?forumID=263
+For a fully managed experience, check out Amazon SageMaker at https://aws.amazon.com/sagemaker
+Security scan reports for python packages are located at: /opt/aws/dlami/info/
+=============================================================================
+45 package(s) needed for security, out of 63 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-58-72 ~]$ cd AIG-Video/
+[ec2-user@ip-172-31-58-72 AIG-Video]$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: dilipdoc123
+Password:
+WARNING! Your password will be stored unencrypted in /home/ec2-user/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[ec2-user@ip-172-31-58-72 AIG-Video]$ sudo docker build -t video_img:latest /home/ec2-user/AIG-Video
+Sending build context to Docker daemon  9.728kB
+Step 1/10 : FROM python:3.10-slim
+ ---> b477fabe1167
+Step 2/10 : WORKDIR /python-docker
+ ---> Using cache
+ ---> 9385cef08e33
+Step 3/10 : COPY requirements.txt requirements.txt
+ ---> Using cache
+ ---> dedb0fbc8edb
+Step 4/10 : RUN apt-get update && apt-get install git -y
+ ---> Using cache
+ ---> fc5cc07a292d
+Step 5/10 : RUN pip3 install -r requirements.txt
+ ---> Using cache
+ ---> be691288697e
+Step 6/10 : RUN pip3 install "git+https://github.com/openai/whisper.git"
+ ---> Using cache
+ ---> 517f20eddb77
+Step 7/10 : RUN apt-get update && apt-get install -y ffmpeg
+ ---> Using cache
+ ---> 38627ba4104e
+Step 8/10 : COPY . .
+ ---> Using cache
+ ---> 64b7713dd367
+Step 9/10 : EXPOSE 8000
+ ---> Using cache
+ ---> a123eb05acab
+Step 10/10 : CMD ["uvicorn", "fastapi_app:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Using cache
+ ---> 98228910562f
+Successfully built 98228910562f
+Successfully tagged video_img:latest
+[ec2-user@ip-172-31-58-72 AIG-Video]$ sudo systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+[ec2-user@ip-172-31-58-72 AIG-Video]$ sudo systemctl start nginx
+[ec2-user@ip-172-31-58-72 AIG-Video]$ sudo docker run -p 8000:8000 video_img
+100%|████████████████████████████████████████| 139M/139M [00:00<00:00, 173MiB/s]
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     172.17.0.1:52106 - "GET / HTTP/1.0" 307 Temporary Redirect
+INFO:     172.17.0.1:52122 - "GET /docs HTTP/1.0" 200 OK
+INFO:     172.17.0.1:52136 - "GET /openapi.json HTTP/1.0" 200 OK
+/usr/local/lib/python3.10/site-packages/whisper/transcribe.py:114: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+INFO:     172.17.0.1:34220 - "POST /whisper/ HTTP/1.0" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1]
+[ec2-user@ip-172-31-58-72 AIG-Video]$ docker build -t your_image_name .
+Sending build context to Docker daemon  9.728kB
+Step 1/10 : FROM python:3.10-slim
+ ---> b477fabe1167
+Step 2/10 : WORKDIR /python-docker
+ ---> Using cache
+ ---> 9385cef08e33
+Step 3/10 : COPY requirements.txt requirements.txt
+ ---> Using cache
+ ---> dedb0fbc8edb
+Step 4/10 : RUN apt-get update && apt-get install git -y
+ ---> Using cache
+ ---> fc5cc07a292d
+Step 5/10 : RUN pip3 install -r requirements.txt
+ ---> Using cache
+ ---> be691288697e
+Step 6/10 : RUN pip3 install "git+https://github.com/openai/whisper.git"
+ ---> Using cache
+ ---> 517f20eddb77
+Step 7/10 : RUN apt-get update && apt-get install -y ffmpeg
+ ---> Using cache
+ ---> 38627ba4104e
+Step 8/10 : COPY . .
+ ---> 59e4dba552a7
+Step 9/10 : EXPOSE 8000
+ ---> Running in 6f58a2eb8e8f
+Removing intermediate container 6f58a2eb8e8f
+ ---> d9a9aca22744
+Step 10/10 : CMD ["uvicorn", "fastapi_app:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Running in 16a9ee92129d
+Removing intermediate container 16a9ee92129d
+ ---> 2c832cf14943
+Successfully built 2c832cf14943
+Successfully tagged your_image_name:latest
+[ec2-user@ip-172-31-58-72 AIG-Video]$ sudo docker run -p 8000:8000 your_image_name
+100%|████████████████████████████████████████| 139M/139M [00:00<00:00, 178MiB/s]
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+/usr/local/lib/python3.10/site-packages/whisper/transcribe.py:114: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+results :  [{'filename': 'Artificial Intelligence-small.mp4', 'transcript': " Hey everyone, this is Rishma from Madhiraika and today I'll take you through a very interesting topic that is none other than deep learning. And like most of you, even I'm deeply fascinated with artificial intelligence. Think about this. Instead of you doing all your work, you have a machine to finish it for you or it can do something which you thought was not possible. For instance, predicting the future, like predicting earthquakes, tsunamis, so that preventive measures can be taken to save lives. Chat bots, virtual personal assistance, like Siri in iPhones, Google Assistant, and believe me, it is getting smarter day by day with deep learning. Sell driving cars. It will be a blessing for elderly people and disabled people who find it difficult to drive on their own. And on top of that, it can also avoid a lot of accidents that happen due to human error. Google AII Doctor. So this is a recent initiative by Google where Google is working with an Indian IKR chain to develop an AI software which can examine retina scans to identify a condition called Diabetic Retinaopathy which can cause blindness. AI Music Composer. Who thought that we can have an AI Music Composer using deep learning? And maybe in the coming years, even machines will start winning Grammys. And one of my favorites, a Dream Reading Machine with so many unrealistic applications of AI and deep learning that we have seen so far. I was wondering whether we can capture dreams in the form of a video or something. And I wasn't surprised to find out that this was tried in Japan a few years back on three test subjects and they were able to achieve close to 60% accuracy. And that is amazing. But I'm not sure that whether people would want to be a test subject for this or not because it can reveal all your dreams. Great. So this sets the base for you and we are ready to understand what is artificial intelligence. Artificial intelligence is nothing but the capability of a machine to imitate intelligent human behavior. AI is achieved by mimicking a human brain by understanding how it thinks, how it learns and work while trying to solve a problem. For example, a machine playing chess or a voice activated software which helps you with various things in your phone or a number played recognition system which captures the number played often over speeding car and processes it to extract the registration number and identify the owner of the car so that he can be charged. And all this wasn't very easy to implement before deep learning now let's understand the various subsets of artificial intelligence so till now you've heard a lot about artificial intelligence machine learning and deep learning. However, do you know the relationship between all three of them? So deep learning is a subfield of a subfield of artificial intelligence. So it is a subfield of machine learning which is a subfield of artificial intelligence."}]
+INFO:     172.17.0.1:46982 - "POST /whisper/ HTTP/1.0" 200 OK
