@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <link rel="stylesheet" type="text/css" href="https://dr.thisistheprogress.com/static/css/style.css"> -->
+  <!-- <script type="text/javascript" src="../static/jquery/jquery-3.6.4.min"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <link type="image/x-icon" rel="shortcut icon" href="https://theopeneyes.com/assets/images/favicon.ico" />
+
+  <title>Subjective Outcomes</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+      color: #3a3a3a;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .inner_content_wrap {
+      height: calc(100vh - 104px);
+      display: flex;
+    }
+
+    .inner_content_wrap form {
+      width: 700px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+      max-width: 100%;
+      border: 1px solid #dfdfdf;
+    }
+
+    .inner_content_wrap form .form_feild {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+    }
+
+    .inner_content_wrap form ul {
+      padding-left: 18px;
+    }
+
+    .inner_content_wrap form ul li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .inner_content_wrap form ul li span.percentage {
+      font-weight: bold;
+    }
+
+    .inner_content_wrap form .form_feild span.label_clear {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .inner_content_wrap form .form_feild span button.clear_btn {
+      padding: 3px 10px;
+      font-size: 11px;
+    }
+
+    .inner_content_wrap form .form_feild.form_btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .inner_content_wrap form .form_feild.form_btn button {
+      margin: 0 5px;
+    }
+
+    .inner_content_wrap form .form_feild:last-child {
+      margin: 0;
+    }
+
+    .inner_content_wrap form label {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .inner_content_wrap form .form_feild label small {
+      display: block;
+      font-weight: normal;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .inner_content_wrap form .form_feild label span {
+      font-weight: normal;
+    }
+
+    .inner_content_wrap form .form_feild input,
+    .inner_content_wrap form .form_feild textarea {
+      padding: 10px;
+      border: 1px solid #d8d8d8;
+      resize: none;
+      font-size: 12px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.03);
+      color: #7a7a7a;
+    }
+
+    .inner_content_wrap form .form_feild textarea {
+      height: 70px;
+    }
+
+    button {
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: transparent !important;
+    }
+
+    button.submit_btn {
+      background-color: #4CAF50;
+      border: 1px solid #4CAF50;
+    }
+
+    button.submit_btn:hover {
+      color: #4CAF50;
+    }
+
+    button.clear_btn {
+      background-color: #555555;
+      border: 1px solid #555555;
+    }
+
+    button.clear_btn:hover {
+      color: #555555;
+    }
+
+    header {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      padding: 0px 30px 0 75px;
+      background: #fff;
+      position: relative;
+    }
+
+    header span.version {
+      background-color: #0b56a6;
+      color: #fff;
+      display: flex;
+      flex-flow: column;
+      font-size: 14px;
+      font-weight: 500;
+      height: 65px;
+      justify-content: flex-end;
+      left: -55px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      padding-bottom: 10px;
+      position: absolute;
+      text-align: center;
+      top: -30px;
+      transform: rotate(-45deg);
+      width: 125px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer {
+      background-color: #fff;
+      padding: 10px 15px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #0b56a6;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    footer ul li {
+      display: inline-block;
+      padding: 0 7px;
+      border-right: 1px solid #c3c3c3;
+    }
+
+    footer ul li:last-child {
+      border: 0;
+      padding-right: 0px;
+    }
+
+    .invalid_data {
+      color: #dc3545;
+      display: inline-block;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    /* #result {
+    display: none;
+} */
+  </style>
+</head>
+
+<body onunload="">
+  <header>
+    <span class="version">Beta</span>
+    <div class="logo">
+      <img src="https://theopeneyes.com/assets/images/logo-black.png" alt="" height="60" width="60">
+      <h1>Subjective Outcomes</h1>
+      <button type="button" class="submit_btn" onclick="logoutfun()">Logout</button>
+    </div>
+  </header>
+  <div class="inner_content_wrap">
+    <form onsubmit="return validform()" method="POST" id="myForm">
+
+      <div class="form_feild">
+        <span class="label_clear">
+          <label for="name">Objective/Goal:
+            <small>Please use one objective/goal at a time.</small>
+          </label>
+          <button class="clear_btn" type="button" onclick="resetObject()">Clear</button>
+        </span>
+        <textarea id="objective" type="text" name="objective">{{ objective }}</textarea>
+        <span id="msgobject" class="invalid_data" style="display:none;">Please enter Objective goal</span>
+      </div>
+
+      <div class="form_feild">
+        <span class="label_clear">
+          <label for="message">Feedback:</label>
+          <button class="clear_btn" type="button" onclick="resetFeedback()">Clear</button>
+        </span>
+        <textarea id="feedback" name="feedback">{{ feedback }}</textarea>
+        <span id="msgfeed" class="invalid_data" style="display:none;">Please enter feedback </span>
+      </div>
+      <div class="form_feild form_btn">
+        <button class="clear_btn" type="button" id="resetBtn" onclick="resetForm()">Reset</button>
+        <button class="submit_btn" type="submit" onclick="submitfun()">Submit</button>
+      </div>
+      <div id="result">
+        <label>Derived Relevance:</label>
+        <ul>
+          <li>Considering the entire feedback, we feel your understanding of the objective/goal of this course is
+            <span id="result_multi" class="percentage">{{ result_multi }}</span>
+          </li>
+          <li>If we be more specific, here is one of your sentences that brings your understanding to
+            <span id="result_single_per" class="percentage">{{result_single_per}}</span>
+            <span id="result_single_text">{{result_single_text}}</span>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <div class="copyright">
+      © 2023 & powered by
+      <a href="https://theopeneyes.com/" target="_blank"> OpenEyes Technologies Inc.</a>
+    </div>
+    <div class="footer_links">
+      <ul>
+        <li>
+          <a href="https://theopeneyes.com/privacy-policy" target="_blank">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="https://theopeneyes.com/cookie-policy" target="_blank">Cookie Policy</a>
+        </li>
+        <li>
+          <a href="https://theopeneyes.com/terms-of-use" target="_blank">Terms of Use</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+
+    history.navigationMode = 'compatible';
+    document.onreadystatechange = WaitForComplete;
+    window.onload = function () {
+      var resultMulti = document.getElementById('result_multi').innerHTML;
+
+      handleResultMulti(resultMulti);
+
+      if (localStorage.getItem('pin')) {
+      }
+      else {
+        window.location.href = '/';
+      }
+    }
+
+    function WaitForComplete() {
+      if (document.readyState == 'loaded' || document.readyState == 'complete') {
+      }
+    };
+    function logoutfun() {
+      localStorage.removeItem('pin')
+      window.location.href = "/";
+    }
+
+    function resetForm() {
+      // document.getElementById("objective").value = "";
+      // document.getElementById("feedback").value = "";
+      // document.getElementById("result").style.display = 'none';
+      window.location.href = "/resp";
+
+    }
+
+    function resetObject() {
+      document.getElementById("objective").value = "";
+      document.getElementById("result").style.display = 'none';
+    }
+
+    function resetFeedback() {
+      document.getElementById("feedback").value = "";
+      document.getElementById("result").style.display = 'none';
+    }
+    if (history.state === "form") {
+      history.replaceState(null, null, "/login");
+      window.location.href = "/form";
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById("myForm").addEventListener("submit", function (e) {
+        validform();
+        pin = localStorage.getItem('pin');
+        var myForm = document.getElementById('myForm');
+        myForm.action = '/derived_relevance/' + pin;
+      });
+    });
+    function validform() {
+      const form = document.querySelector("#myForm");
+      const objective = form.elements.objective.value.trim();
+      const feedback = form.elements.feedback.value.trim();
+      var message1 = document.getElementById("msgobject");
+      var message3 = document.getElementById("msgfeed");
+      if (!objective) {
+        if (!feedback) {
+          message1.style.display = "block";
+          message3.style.display = "block";
+          return false;
+        }
+        else {
+          message1.style.display = "block";
+          message3.style.display = "none";
+          return false;
+        }
+
+      }
+      else if (!feedback) {
+        message1.style.display = "none";
+        message3.style.display = "block";
+        return false;
+      }
+      return true;
+    }
+    function handleResultMulti(resultMulti) {
+      var resultDiv = document.getElementById('result');
+      if (resultMulti == '') {
+        resultDiv.style.display = 'none';
+      }
+      else if (resultMulti != '') {
+        resultDiv.style.display = 'block';
+
+      }
+    }
+    var resultMulti = document.getElementById('result_multi').innerHTML;
+
+    handleResultMulti(resultMulti);
+
+  </script>
+</body>
+
+</html>

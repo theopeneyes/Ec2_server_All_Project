@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+Jinja2
+sentence-transformers
+openai
+
+
