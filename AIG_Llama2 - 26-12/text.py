@@ -26,8 +26,6 @@ def convert_docx_to_pdf(docx_path, pdf_path):
 def convert_text_to_pdf(text_path, pdf_path):
     result = subprocess.run(['unoconv', '-f', 'pdf', '-o', pdf_path, text_path], capture_output=True)
     print(result.stderr.decode())
-    
-
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'/home/ec2-user/ocr-text-383007-9ff9d27a5832.json'
 

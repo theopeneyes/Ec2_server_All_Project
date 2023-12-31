@@ -58,6 +58,7 @@ def fib_with_mcq(Text,fib_type,file_type):
         # If page has short text length than will add below strings so that we will get exact page number
         else:
             fib_by_LLM_2.append("text lenght is small so not able to generate questions.")
+
     def extract_data(entry):
         # This function will return dictionary with all required keys
         Prompt = entry.get("Prompt", None)
@@ -99,11 +100,16 @@ def fib_with_mcq(Text,fib_type,file_type):
         data_updated = process_data(llm_output)
         for item in data_updated:
             # Rename question, options and answer
+            item['context'] = None
             item['question']=item.pop('Prompt')
             item['options']=item.pop('Options')
-            item['options'] = [option.capitalize() for option in item['options']]
+            if type(item['options']) == str:
+                item['options'] = [option.capitalize() for option in item['options']]
             item['answer']=item.pop('Answer')
-            item['answer'] = item['answer'].capitalize()
+            if type(item['answer']) == str:
+                item['answer'] = item['answer'].capitalize()
+            else:
+                item['answer'] = item['answer']
             item['page_no'] = int(index + 1)
             item['rank'] = None
             item['statement'] = None
@@ -118,6 +124,7 @@ def fib_with_mcq(Text,fib_type,file_type):
         final_generated_questions.append(data_updated)
     final_generated_questions=flatten(final_generated_questions)
     final_generated_questions=modify_answer_based_on_input(final_generated_questions)
+
     # Use list comprehension to filter dictionaries
     final_generated_questions = [
         item for item in final_generated_questions if '_______' in item['question']
@@ -132,23 +139,36 @@ def fib_with_mcq(Text,fib_type,file_type):
     # Remove answers in parentheses for each question in the list
     questions_list_cleaned = [remove_answer_in_parentheses(q) for q in final_generated_questions]
 
-    # Define the question to remove
-    question_to_remove = 'string + __________'
+    pattern_to_remove = re.compile(r'.+ \+ .+')
 
-    # Remove the specified question from the list
-    final_generated_questions = [
-        q for q in questions_list_cleaned if q['question'] != question_to_remove
-    ]
+    final_generated_questions = [d for d in questions_list_cleaned if not pattern_to_remove.search(d.get('question', ''))]
 
-    # Remove "Option x: " prefix from options and square brackets from the question
+    # question_to_remove = 'string + __________'
+    # # Remove the specified question from the list
+    # final_generated_questions = [
+    #     q for q in questions_list_cleaned if q['question'] != question_to_remove
+    # ]
+    
     final_generated_questions = [
-        {
-            'question': item['question'].replace('[', '').replace(']', ''),
-            'options': [option.split(': ')[1] if ': ' in option else option for option in item['options']],
-            **item
-        }
-        for item in final_generated_questions
-    ]
+    {
+        'question': item['question'].replace('[', '').replace(']', ''),
+        'options': [option.split(': ')[1] if (isinstance(option, str) and ': ' in option) else option for option in item.get('options', [])],
+        **item
+    }
+    for item in final_generated_questions
+    
+]
+    
+    
+    # # Remove "Option x: " prefix from options and square brackets from the question
+    # final_generated_questions = [
+    #     {
+    #         'question': item['question'].replace('[', '').replace(']', ''),
+    #         'options': [option.split(': ')[1] if ': ' in option else option for option in item['options']],
+    #         **item
+    #     }
+    #     for item in final_generated_questions
+    # ]
 
     def find_blanks(final_generated_questions):
         # In this function we will filter out those blanks which have more than 1 blank
@@ -170,7 +190,6 @@ def fib_with_mcq(Text,fib_type,file_type):
     # Remove questions where the answer is 'all of the above' or 'none of the above'
     if fib_type=="fib":
         final_generated_questions = [question for question in final_generated_questions if question['answer'].lower() not in ['all of the above', 'none of the above']]
-
     final_generated_questions = find_blanks(final_generated_questions)
     # we are shuffling questions so that we can display required and additional questions randomly
     random.shuffle(final_generated_questions)

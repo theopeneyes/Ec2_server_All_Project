@@ -130,6 +130,7 @@ def boolean_multiple_statement(Text, boolean_type,file_type):
     true_statement=postprocessing(Boolean_by_LLM_true)
     false_statement=postprocessing(Boolean_by_LLM_false)
     final_generated_questions__=final_boolean_statement(true_statement,false_statement)
+
     # check which type of boolean statement it is whether it's multiple or single
     if boolean_type=="bool_statement":
 
@@ -147,7 +148,7 @@ def boolean_multiple_statement(Text, boolean_type,file_type):
             # For each page if number of statements between 1& 4 , append it to final_generated_questions
             num_statements = len(statements)
             if num_statements <= 4  and num_statements >1:
-                final_generated_questions.append({'question':'Find True/False statements from the below statements','statement': [s['statement'] for s in statements], 'answer': [s['answer'] for s in statements], 'page_no': page,'context':None,'rank':None,'question_type':'bool_statement'})
+                final_generated_questions.append({'question':' Find True statements from the below.','statement': [s['statement'] for s in statements], 'answer': [s['answer'] for s in statements], 'page_no': page,'context':None,'rank':None,'question_type':'bool_statement'})
 
             # if page has more than 4 statemnets then group it max to 4 and min to 2 , then append it to final_generated_questions
             else:
@@ -157,15 +158,61 @@ def boolean_multiple_statement(Text, boolean_type,file_type):
                     end_index = start_index + 4
                     group_statements = statements[start_index:end_index]
                     if len(group_statements) >= 2:
-                        final_generated_questions.append({'question':'Find True/False statements from the below statements','statement': [s['statement'] for s in group_statements], 'answer': [s['answer'] for s in group_statements], 'page_no': page,'context':None,'rank':None,'question_type':'bool_statement'})
+                        final_generated_questions.append({'question':' Find True statements from the below.','statement': [s['statement'] for s in group_statements], 'answer': [s['answer'] for s in group_statements], 'page_no': page,'context':None,'rank':None,'question_type':'bool_statement'})
 
         # mapping each statement to its relevant answer and return as dictionary in answer key
         for item in final_generated_questions:
+            len_of_sen = len(item['statement'])
             answer_dict = [{i + 1: answer for i, answer in enumerate(item['answer'])}]
-            item['answer'] = answer_dict
+            for index, dictionary in enumerate(answer_dict):
+                true_answer = [key for key, value in dictionary.items() if value == 'True']
+                if len(true_answer) == 1:
+                    true_answer = true_answer
+                else:
+                    if len(true_answer) > 0:
+                        true_answer = [f"{', '.join(map(str, true_answer[:-1]))} and {true_answer[-1]}"]
+                def generate_random_list(existing_options,len_of_sen):
+                    """
+                    Function to generate a random list with unique values and permutations
+                    """
+                    new_option = random.sample(range(1, len_of_sen+1), random.randint(1, len_of_sen-1))
+                    while sorted(new_option) == sorted(true_answer) or sorted(new_option) in [sorted(opt) for opt in existing_options]:
+                        new_option = random.sample(range(1, len_of_sen+1), random.randint(1, len_of_sen-1))
+                    return new_option
 
+                # List to store generated options
+                option_list = []
+                option_list = [generate_random_list(option_list,len_of_sen) for _ in range(2)]
+
+                # Randomly choose between "All of the above" and "None of the above"
+                replacement = random.choice(["All of the above", "None of the above"])
+
+                # Check if "All of the above" is chosen and the true answer has 4 options
+                if replacement == "All of the above" and len(true_answer) == 4:
+                    true_answer = "All of the above"
+                    option_list.append(generate_random_list(option_list,len_of_sen))
+                    option_list.append(true_answer)
+                else:
+                    option_list.extend([true_answer, replacement])
+
+                # Shuffle the option list
+                random.shuffle(option_list)
+            output = []
+            for sublist in option_list:
+                if len(sublist) <= 4:
+                    if len(sublist) == 1:
+                        output.append(sublist)
+                    else:
+                        if len(true_answer) > 0:
+                            formatted_sublist = [f"{', '.join(map(str, sublist[:-1]))} and {sublist[-1]}"]
+                            output.append(formatted_sublist)
+                else:
+                    output.append([sublist])
+
+            index = option_list.index(true_answer)
+            item['answer'] = str(index + 1) + ":" + str(true_answer)
+            item['options'] = output
         return final_generated_questions
-    
 
     else:
         def add_full_stop(final_generated_questions__):
@@ -176,5 +223,6 @@ def boolean_multiple_statement(Text, boolean_type,file_type):
                 item['statement'] = [statement]
                 updated_statements_list.append(item)
             return updated_statements_list
+
         final_generated_questions = add_full_stop(final_generated_questions__)
         return final_generated_questions

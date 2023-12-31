@@ -46,6 +46,7 @@ def AIG(user_id):
                     "id" : _id,
                     "status" : "Error"
                     }
+                    
             print("status updated : ",status_array)
             status = requests.post(status_url,headers=headers,data=json.dumps(status_array))
             lessConErrorMsg = "Given video or Image has Less content..!"
